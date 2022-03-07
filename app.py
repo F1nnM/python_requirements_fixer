@@ -5,10 +5,13 @@ import time
 st.title("Requirements fixer")
 st.write("Simply upload a requirements.txt without fixed versions and get back a file with all dependencies fixed to the newest version.")
 
-file = st.file_uploader("Upload your requirements.txt here", "txt", accept_multiple_files=False)
+if not 'file' in st.session_state or st.session_state['file'] is None:
+    st.file_uploader("Upload your requirements.txt here", "txt", accept_multiple_files=False, key='file')
 
-if file is not None:
-    
+if 'file' in st.session_state and st.session_state['file'] is not None:
+    if st.button("Clear file"):
+        del st.session_state['file']
+
     data = None
     with st.spinner("Processing file"):
         # save file temporarily
@@ -16,7 +19,7 @@ if file is not None:
         tempFileNameIn = f"{tempName}_uploaded_requirements.txt"
         tempFileNameOut = f"{tempName}_finished_requirements.txt"
         with open(tempFileNameIn,"wb") as f: 
-            f.write(file.getbuffer())
+            f.write(st.session_state['file'].getbuffer())
 
         # run update script
         os.system(f"bash ./update.sh {tempFileNameIn} {tempName} {tempFileNameOut}")
