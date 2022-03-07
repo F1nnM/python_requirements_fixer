@@ -40,7 +40,7 @@ jobs:
           context: .
           push: true
           tags: |
-            f1nnm/python-requirementsfixer:release-${{ github.event.release.tag_name }}
-            f1nnm/python-requirementsfixer:latest
-            ghcr.io/the-gitdeploy/python-requirementsfixer:release-${{ github.event.release.tag_name }}
-            ghcr.io/the-gitdeploy/python-requirementsfixer:latest
+            f1nnm/python-requirements-fixer:release-${{ github.event.release.tag_name }}
+            f1nnm/python-requirements-fixer:latest
+            ghcr.io/the-gitdeploy/python-requirements-fixer:release-${{ github.event.release.tag_name }}
+            ghcr.io/the-gitdeploy/python-requirements-fixer:latest
