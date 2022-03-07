@@ -14,12 +14,12 @@ if file is not None:
         # save file temporarily
         tempName = str(time.time_ns())
         tempFileNameIn = f"{tempName}_uploaded_requirements.txt"
-        tempFileNameOut = f"{tempName}_uploaded_requirements.txt"
+        tempFileNameOut = f"{tempName}_finished_requirements.txt"
         with open(tempFileNameIn,"wb") as f: 
             f.write(file.getbuffer())
 
         # run update script
-        os.system(f"./update.sh {tempFileNameIn} {tempName} {tempFileNameOut}")
+        os.system(f"bash ./update.sh {tempFileNameIn} {tempName} {tempFileNameOut}")
 
         # read result
         with open(tempFileNameOut, 'r') as file:
